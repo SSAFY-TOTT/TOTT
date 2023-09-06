@@ -34,18 +34,6 @@ services:
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
 
-  backend:
-    container_name: ttot-backend
-    build: ./Backend
-    restart: always
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://tott-mysql:3306/tott
-      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-
 volumes:
   mysql-data:
   mongo-data:
