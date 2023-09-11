@@ -22,10 +22,14 @@ jobs:
           java-version: "11"
           distribution: "temurin"
 
+      - name: checkout
+      uses: actions/checkout@master
+
       - name: create env file
         run: |
           touch .env
           echo "${{ secrets.ENV_VARS }}" >> .env
+    
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
@@ -33,7 +37,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            sh ~/TOTT/deploy.sh
+            sh ../../deploy.sh
 
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
