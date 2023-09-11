@@ -33,7 +33,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            sh ./deploy.sh
+            sh ../../deploy.sh
 
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
@@ -63,7 +63,7 @@ jobs:
           contains(github.ref, 'main') ||
           contains(github.ref, 'feature/#1')
         run: |
-          cd ./Backend/src/main/resources/security
+          cd ../../Backend/src/main/resources/security
           touch ./application-api.yml
           echo "${{ secrets.YML_API }}" > ./application-api.yml
         shell: bash
@@ -74,7 +74,7 @@ jobs:
           contains(github.ref, 'main') ||
           contains(github.ref, 'feature/#1')
         run: |
-          cd ./Backend/src/main/resources/security
+          cd ../../Backend/src/main/resources/security
           touch ./application-database.yml
           echo "${{ secrets.YML_DATABASE }}" > ./application-database.yml
         shell: bash
@@ -84,7 +84,7 @@ jobs:
           contains(github.ref, 'main') ||
           contains(github.ref, 'feature/#1')
         run: |
-          cd ./Backend/src/main/resources/security
+          cd ../../Backend/src/main/resources/security
           touch ./application-security.yml
           echo "${{ secrets.YML_SECURITY }}" > ./application-security.yml
         shell: bash
