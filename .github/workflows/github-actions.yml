@@ -23,7 +23,7 @@ jobs:
           distribution: "temurin"
 
       - name: checkout
-        uses: actions/checkout@feature/#1
+        uses: actions/checkout@main
 
       - name: create env file
         run: |
