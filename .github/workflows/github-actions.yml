@@ -37,7 +37,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.PRIVATE_KEY }}
           script: |
-            sh ../../deploy.sh
+            sudo git submodule init
+            sudo git submodule update --recursive --remote --merge
 
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
