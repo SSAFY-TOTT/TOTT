@@ -22,6 +22,15 @@ jobs:
           java-version: "11"
           distribution: "temurin"
 
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }}
+          script: |
+            sh /home/ubuntu/srv/ubuntu/deploy.sh
+
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
         uses: actions/cache@v3
