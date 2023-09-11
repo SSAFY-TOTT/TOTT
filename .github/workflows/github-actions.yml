@@ -23,13 +23,13 @@ jobs:
           distribution: "temurin"
 
       - name: checkout
-      uses: actions/checkout@master
+        uses: actions/checkout@master
 
       - name: create env file
         run: |
           touch .env
           echo "${{ secrets.ENV_VARS }}" >> .env
-    
+
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@master
         with:
