@@ -12,6 +12,8 @@ services:
       TZ: Asia/Seoul
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - backend_network
     command:
       - '--character-set-server=utf8mb4'
       - '--collation-server=utf8mb4_unicode_ci'
@@ -23,6 +25,10 @@ services:
     image: "redis:latest"
     ports:
       - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis
+    networks:
+      - backend_network
 
   database-adminer:
     container_name: tott-db-adminer
@@ -33,7 +39,27 @@ services:
       - ADMINER_DEFAULT_SERVER=db-mysql
       - ADMINER_DESIGN=hydra
       - ADMINER_PLUGINS=tables-filter tinymce
+    networks:
+      - backend_network
+
+  backend:
+    container_name: ttot-backend
+    build: ./Backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://tott-mysql:3306/tott
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    driver: bridge
 
 volumes:
   mysql-data:
-  mongo-data:
+  redis-data:
