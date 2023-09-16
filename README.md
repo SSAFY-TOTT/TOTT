@@ -19,7 +19,6 @@ tott
 │   │   └── APIException.java
 │   ├── infra
 │   │   └── SchedulerConfig.java
-│   ├── kakao
 │   ├── seoulopendata
 │   └── shinhan
 │       ├── ShinhanBankAPI.java
