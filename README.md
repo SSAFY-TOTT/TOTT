@@ -2,6 +2,93 @@
 ![Group 76](https://github.com/SSAFY-TOTT/TOTT/assets/84130518/8fd51875-a4a1-4b85-ab49-7af3ee3bec8e)  
 TOTT는 금융 및 부동산 정보의 결합으로 전세집을 비교하는 통합 어플리케이션입니다.
 
+<br>
+
+## 패키지 구조
+```
+tott
+├── TottApplication.java
+├── account
+├── api
+│   ├── config
+│   ├── core
+│   │   └── dto
+│   │       └── request
+│   ├── exception
+│   │   ├── APIErrorCode.java
+│   │   └── APIException.java
+│   ├── infra
+│   │   └── SchedulerConfig.java
+│   ├── kakao
+│   ├── seoulopendata
+│   └── shinhan
+│       ├── ShinhanBankAPI.java
+│       ├── controller
+│       │   └── ShinhanBankController.java
+│       ├── dto
+│       │   ├── ShinhanBankDataBody.java
+│       │   ├── request
+│       │   │   ├── ShinhanBankAPIRequest.java
+│       │   │   └── header
+│       │   │       └── RequestDataHeader.java
+│       │   └── response
+│       │       ├── ShinhanBankAPIResponse.java
+│       │       └── header
+│       │           └── ResponseDataHeader.java
+│       ├── factory
+│       │   └── ShinhanBankWebClientFactory.java
+│       └── service
+│           ├── searchaccounts
+│           │   └── dto
+│           │       ├── request
+│           │       └── response
+│           ├── searchcreditline
+│           │   └── dto
+│           │       ├── request
+│           │       └── response
+│           ├── searchname
+│           │   └── dto
+│           │       ├── request
+│           │       └── response
+│           └── transfer1
+│               └── dto
+│                   ├── request
+│                   └── response
+├── auth
+│   ├── annotation
+│   ├── controller
+│   ├── domain
+│   ├── dto
+│   │   ├── request
+│   │   └── response
+│   ├── exception
+│   ├── service
+│   ├── support
+│   └── vo
+├── budget
+├── global
+│   ├── config
+│   │   ├── OpenApiConfig.java
+│   │   └── WebConfig.java
+│   ├── domain
+│   │   └── BaseEntity.java
+│   ├── exception
+│   │   ├── ControllerAdvice.java
+│   │   ├── ErrorCode.java
+│   │   ├── TOTTException.java
+│   │   └── dto
+│   │       └── response
+│   ├── redis
+│   └── security
+├── housedetail
+├── housegeo
+├── member
+├── region
+└── wishlist
+```
+
+<br>
+
 ## 기획 배경
 1. **30대 미만 임차인 급증** : 2018년부터 매해 전년대비 10만건 이상씩 증가하면서 지난해 전국 213만5000명까지 증가했습니다. 특히 수도권에서 2018년부터 임차인이 매년 5만명 이상 증가했습니다.. 2020년은 10만명이나 늘었다. 또한 임차인의 연령대가 점점 낮아지고 있으며, 2021년 기준 30대 미만 임차인 비율이 2021년 31.2%로 증가하면서 가장 많은 임차인 비율을 차지했습니다. [관련기사](https://academy.mk.co.kr/news/view.php?year=2021&no=496776)<br><br>
 2. **전세대출 총액 167조** :  전세 대출 또한 같은 현상을 겪고 있다. 전세자금 대출 채무자 수는 133만명, 대출 총액은 167조로 집계되었으며, 그 중 2030세대의 비중이 81만명으로 전체 채무자의 절반 이상을 차지한 것으로 나타났습니다. [관련기사](http://www.m-economynews.com/news/article.html?no=33832)<br><br>
